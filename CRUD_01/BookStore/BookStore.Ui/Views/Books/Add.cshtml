@@ -1,0 +1,48 @@
+﻿
+
+<h3>Add a new Book</h3>
+
+<form method="post">
+    <div>
+        <label for="txtTitulo">Title</label>
+        <input type="text" name="titulo" id="txtTitulo" value="@Model.Titulo" />
+    </div>
+
+    <div>
+        <label for="txtNome">Name</label>
+        <input type="text" name="nome" id="txtNome" value="@Model.Nome" />
+    </div>
+
+    <div>
+        <label for="txtSobreNome">Last name</label>
+        <input type="text" name="sobreNome" id="txtSobreNome" value="@Model.SobreNome" />
+    </div>
+
+
+    <div>
+        <label for="txtIdioma">Language</label>
+        <input type="text" name="idioma" id="txtIdioma" value="@Model.Idioma" />
+    </div>
+
+    <div>
+        <label for="txtOrigem">Made</label>
+        <input type="text" name="Origem" id="txtOrigem" value="@Model.Origem" />
+    </div>
+
+    <div>
+        <label for="txtIsbn">ISBN</label>
+        <input type="number" name="isbn" id="txtIsbn" value="@Model.Isbn" />
+    </div>
+
+    <div>
+        <label for="txtAno">Year</label>
+        <input type="number" name="ano" id="txtAno" value="@Model.Ano" />
+    </div>
+
+    <br />
+
+    <div>
+        <button>Adicionar</button>
+    </div>
+
+</form>

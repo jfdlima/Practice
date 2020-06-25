@@ -3,6 +3,12 @@
 }
 
 <h3>List of Books</h3>
+
+<div>
+    <a href="@Url.Action("Add")">Add new Book</a>
+</div>
+
+
 <table>
     <thead>
         <tr>
@@ -26,7 +32,7 @@
                 <td>@books.Isbn</td>
                 <td>@books.Ano</td>
                 <td>
-                    <a href="#">Edit</a>
+                    <a href="@Url.Action("Add")/@books.Id">Edit</a>
                     <button>Del</button>
                 </td>
             </tr>
