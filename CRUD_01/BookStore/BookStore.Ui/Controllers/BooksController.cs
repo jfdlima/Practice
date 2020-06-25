@@ -53,6 +53,22 @@ namespace BookStore.Ui.Controllers
             return RedirectToAction("Index");
         }
 
+        public ActionResult Del(int id)
+        {
+            var book = context.Books.Find(id);
+            if(book == null)
+            {
+                return HttpNotFound();
+            }
+
+            context.Books.Remove(book);
+            context.SaveChanges();
+
+            return null;
+            
+        }
+
+
         protected override void Dispose(bool disposing)
         {
             context.Dispose();
