@@ -1,62 +1,93 @@
-﻿@{ 
+﻿@{
     var model_books = Model;
 }
 
 <h3>List of Books</h3>
 
 <div>
-    <a href="@Url.Action("Add")">Add new Book</a>
+    <a class="btn btn-primary mb-3  " href="@Url.Action("Add")">Add new Book</a>
 </div>
 
 
-<table>
-    <thead>
-        <tr>
-            <th>Titulo</th>
-            <th>Autor</th>
-            <th>Idioma</th>
-            <th>Origem</th>
-            <th>ISBN</th>
-            <th>Ano</th>
-        </tr>
-    </thead>
-
-    <tbody>
-        @foreach (var books in model_books)
-        {
-            <tr id="cod-@books.Id">
-                <td>@books.Titulo</td>
-                <td>@books.Nome @books.SobreNome</td>
-                <td>@books.Idioma</td>
-                <td>@books.Origem</td>
-                <td>@books.Isbn</td>
-                <td>@books.Ano</td>
-                <td>
-                    <a href="@Url.Action("Add")/@books.Id">Edit</a>
-                    <button onclick="DeleteBook(@books.Id,'@books.Titulo')">Del</button>
-                </td>
+<div class="inner cover table-responsive-sm">
+    <table class="table">
+        <thead class="thead-dark">
+            <tr>
+                <th>Title</th>
+                <th>Author</th>
+                <th>Language</th>
+                <th>Made</th>
+                <th>ISBN</th>
+                <th>Year</th>
+                <th></th>
             </tr>
-        }
-    </tbody>
-</table>
+        </thead>
+
+        <tbody class="thead-light">
+            @foreach (var books in model_books)
+            {
+                <tr id="cod-@books.Id">
+                    <td>@books.Titulo</td>
+                    <td>@books.Nome @books.SobreNome</td>
+                    <td>@books.Idioma</td>
+                    <td>@books.Origem</td>
+                    <td>@books.Isbn</td>
+                    <td>@books.Ano</td>
+                    <td>
+                        <a class="btn btn-success" href="@Url.Action("Add")/@books.Id">Edit</a>
+                        <button class="btn btn-danger" onclick="DeleteBook(@books.Id,'@books.Titulo')">Del</button>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+
+<!-- UTILIZANDO O MODAL DO BOOTSTRAP -->
+<div data-id="0" class="modal" id="delModal" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Delet Book</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <p>Are you sure do you want to delet the product <strong><span id="nomeBookModal"></span></strong>?</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
+                <button onclick="ConfirmDelBook()" type="button" class="btn btn-primary">Confirmar</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
 
 <!-- UTILIZANDO AJAX PARA REALIZAR A VERIFICAO PARA APAGAR UM DADO -->
 
 <script>
     function DeleteBook(id, titulo) {
-        let yes = confirm(`Are you sure you want to delete the book ${titulo} ?`)
-        if (yes) {
-            ConfirmDelBook(id)
-        }
+        $('#nomeBookModal').text(titulo)
+        $('#delModal').data('id', id).modal('show')
     }
 
-    function ConfirmDelBook(id) {
-        
+    function teste() {
+        alert()
+    }
+
+    function ConfirmDelBook() {
+        let id = $('#delModal').data('id')
         let xhr = new XMLHttpRequest()
         const url = `/Books/Del/${id}`
+
         xhr.onreadystatechange = function () {
             if (this.readyState === 4 && this.status === 404) {
-                alert('The bot doesnt exist !')
+                $('#delModal').data('id', '0').modal('hide')
+                toastr.error('Book not found','Book Store')
+                //alert('The bot doesnt exist !')
             }
             if (this.readyState === 4 && this.status === 200) {
                 //REMOVENDO DO HTML
@@ -64,7 +95,9 @@
                 if (tr !== null) {
                     tr.remove()
                 }
-                alert('The book is removed with sucess')
+                $('#delModal').data('id', '0').modal('hide')
+                toastr.success('Deleted book with success','Book Store')
+                //alert('The book is removed with sucess')
             }
 
         }
