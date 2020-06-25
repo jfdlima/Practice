@@ -73,3 +73,7 @@ C:\Users\21145\Documents\Programing\C#\PRACTICE\Practice\CRUD_01\BookStore\BookS
 C:\Users\21145\Documents\Programing\C#\PRACTICE\Practice\CRUD_01\BookStore\BookStore.Ui\obj\Debug\BookStore.Ui.csproj.CopyComplete
 C:\Users\21145\Documents\Programing\C#\PRACTICE\Practice\CRUD_01\BookStore\BookStore.Ui\obj\Debug\BookStore.Ui.dll
 C:\Users\21145\Documents\Programing\C#\PRACTICE\Practice\CRUD_01\BookStore\BookStore.Ui\obj\Debug\BookStore.Ui.pdb
+C:\Users\21145\Documents\Programing\C#\PRACTICE\Practice\CRUD_01\BookStore\BookStore.Ui\bin\EntityFramework.dll
+C:\Users\21145\Documents\Programing\C#\PRACTICE\Practice\CRUD_01\BookStore\BookStore.Ui\bin\EntityFramework.SqlServer.dll
+C:\Users\21145\Documents\Programing\C#\PRACTICE\Practice\CRUD_01\BookStore\BookStore.Ui\bin\EntityFramework.xml
+C:\Users\21145\Documents\Programing\C#\PRACTICE\Practice\CRUD_01\BookStore\BookStore.Ui\bin\EntityFramework.SqlServer.xml
