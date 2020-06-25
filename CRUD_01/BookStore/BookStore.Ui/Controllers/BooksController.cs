@@ -10,15 +10,53 @@ namespace BookStore.Ui.Controllers
 {
     public class BooksController : Controller
     {
+        private readonly DataContext context = new DataContext();
+
         public ViewResult Index()
         {
-            IList<Book> books = null;
-            using (var context = new DataContext())
-            {
-                books = context.Books.ToList();
-            }
+            var books = context.Books.ToList();
 
             return View(books);
         }
+
+        [HttpGet]
+        public ActionResult Add(int ? id)
+        {
+            Book book = new Book();
+
+            if (id != null)
+            {
+                book = context.Books.Find(id);
+            }
+
+            return View(book);
+        }
+        
+        [HttpPost]
+        public ActionResult Add(Book bookNew)
+        {
+            if(bookNew.Id == 0)
+            {
+                context.Books.Add(bookNew);
+                context.SaveChanges();
+                return RedirectToAction("Index");
+            }
+
+            return Edit(bookNew);
+        }
+
+        protected ActionResult Edit(Book bookOld)
+        {
+            context.Entry(bookOld).State = System.Data.Entity.EntityState.Modified;
+           
+            context.SaveChanges();
+            return RedirectToAction("Index");
+        }
+
+        protected override void Dispose(bool disposing)
+        {
+            context.Dispose();
+        }
+
     }
 }
