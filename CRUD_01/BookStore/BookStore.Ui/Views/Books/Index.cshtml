@@ -24,7 +24,7 @@
     <tbody>
         @foreach (var books in model_books)
         {
-            <tr>
+            <tr id="cod-@books.Id">
                 <td>@books.Titulo</td>
                 <td>@books.Nome @books.SobreNome</td>
                 <td>@books.Idioma</td>
@@ -33,9 +33,43 @@
                 <td>@books.Ano</td>
                 <td>
                     <a href="@Url.Action("Add")/@books.Id">Edit</a>
-                    <button>Del</button>
+                    <button onclick="DeleteBook(@books.Id,'@books.Titulo')">Del</button>
                 </td>
             </tr>
         }
     </tbody>
 </table>
+
+<!-- UTILIZANDO AJAX PARA REALIZAR A VERIFICAO PARA APAGAR UM DADO -->
+
+<script>
+    function DeleteBook(id, titulo) {
+        let yes = confirm(`Are you sure you want to delete the book ${titulo} ?`)
+        if (yes) {
+            ConfirmDelBook(id)
+        }
+    }
+
+    function ConfirmDelBook(id) {
+        
+        let xhr = new XMLHttpRequest()
+        const url = `/Books/Del/${id}`
+        xhr.onreadystatechange = function () {
+            if (this.readyState === 4 && this.status === 404) {
+                alert('The bot doesnt exist !')
+            }
+            if (this.readyState === 4 && this.status === 200) {
+                //REMOVENDO DO HTML
+                let tr = document.querySelector(`#cod-${id}`)
+                if (tr !== null) {
+                    tr.remove()
+                }
+                alert('The book is removed with sucess')
+            }
+
+        }
+        xhr.open('get', url)
+        xhr.send()
+    }
+
+</script>
