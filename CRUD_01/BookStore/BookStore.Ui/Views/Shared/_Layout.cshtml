@@ -1,0 +1,26 @@
+﻿<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <meta charset="utf-8" />
+    <title>Book Store </title>
+</head>
+<body>
+    <nav>
+        <ul>
+            <li><a href="@Url.Action("Index","Home")">Home</a></li>
+            <li><a href="@Url.Action("Index","Books")">Books</a></li>
+            <li><a href="@Url.Action("About","Home")">About</a></li>
+        </ul>
+    </nav>
+
+    <div>
+        @RenderBody()
+    </div>
+    <hr />
+    <footer>
+        <span>BookStore &copy; @DateTime.Now.Year </span>
+    </footer>
+</body>
+</html>

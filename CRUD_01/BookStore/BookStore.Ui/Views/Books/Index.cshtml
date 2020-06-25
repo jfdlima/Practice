@@ -1,0 +1,35 @@
+﻿@{ 
+    var model_books = Model;
+}
+
+<h3>List of Books</h3>
+<table>
+    <thead>
+        <tr>
+            <th>Titulo</th>
+            <th>Autor</th>
+            <th>Idioma</th>
+            <th>Origem</th>
+            <th>ISBN</th>
+            <th>Ano</th>
+        </tr>
+    </thead>
+
+    <tbody>
+        @foreach (var books in model_books)
+        {
+            <tr>
+                <td>@books.Titulo</td>
+                <td>@books.Nome @books.SobreNome</td>
+                <td>@books.Idioma</td>
+                <td>@books.Origem</td>
+                <td>@books.Isbn</td>
+                <td>@books.Ano</td>
+                <td>
+                    <a href="#">Edit</a>
+                    <button>Del</button>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
