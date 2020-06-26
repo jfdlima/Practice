@@ -17,6 +17,7 @@ namespace BookStore.Ui.Data
 
         //INFORMANDO O MODELO QUE VAI SER MAPEADO
         public DbSet<Book> Books { get; set; }
+        public DbSet<Origem> Origems { get; set; }
 
     }
 }

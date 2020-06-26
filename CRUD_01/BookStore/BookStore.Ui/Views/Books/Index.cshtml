@@ -1,5 +1,6 @@
 ﻿@{
     var model_books = Model;
+    ViewBag.Title = "Books";
 }
 
 <h3>List of Books</h3>
@@ -30,7 +31,7 @@
                     <td>@books.Titulo</td>
                     <td>@books.Nome @books.SobreNome</td>
                     <td>@books.Idioma</td>
-                    <td>@books.Origem</td>
+                    <td>@books.Origem.Nome</td>
                     <td>@books.Isbn</td>
                     <td>@books.Ano</td>
                     <td>

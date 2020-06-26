@@ -1,6 +1,19 @@
-﻿
+﻿@{ 
+    if(Model.Id == 0 )
+    {
+        ViewBag.titulo = "Adicionar";
+        ViewBag.Title = "Add";
+    }
+    else
+    {
+        ViewBag.titulo = "Editar";
+        ViewBag.Title = "Edit";
+    }
 
-<h3>Add a new Book</h3>
+   
+}
+
+<h3>@ViewBag.titulo book </h3>
 
 <div class="mx-sm-5">
     <form method="post">
@@ -25,9 +38,16 @@
             <input class="form-control" type="text" name="idioma" id="txtIdioma" value="@Model.Idioma" />
         </div>
 
+        <!-- FAZENDO UM SELECT PARA MOSTRAR OS PAISES -->
         <div class="form-group row mx-sm-5">
             <label for="txtOrigem">Made</label>
-            <input class="form-control" type="text" name="Origem" id="txtOrigem" value="@Model.Origem" />
+                <select name="OrigemId" class="form-control">
+                    <option value="">Select</option>
+                    @foreach (BookStore.Ui.Models.Origem origem in ViewBag.Origens)
+                    {
+                        <option  @(origem.Id == Model.OrigemId ?  "selected" : "") value="@origem.Id" > @origem.Nome </option>
+                    }
+                </select>
         </div>
 
         <div class="form-group row mx-sm-5">

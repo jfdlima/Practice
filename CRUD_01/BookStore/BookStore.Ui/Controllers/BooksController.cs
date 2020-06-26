@@ -29,6 +29,10 @@ namespace BookStore.Ui.Controllers
                 book = context.Books.Find(id);
             }
 
+            //PASSANDO A CATEGORIA DE ORIGEM
+            var origens = context.Origems.ToList();
+            ViewBag.Origens = origens;
+
             return View(book);
         }
         
