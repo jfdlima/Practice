@@ -11,7 +11,7 @@ namespace BookStore.Ui.Data
     {
 
         //MÉTODO PARA ADICIONAR UM LIVRO NA BASE DE DADOS AO CRIA-LA
-        
+
         //protected override void Seed(DataContext context)
         //{
         //    var brasil = new Origem() { Nome = "BRA" };

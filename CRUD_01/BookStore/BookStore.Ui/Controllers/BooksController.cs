@@ -39,14 +39,23 @@ namespace BookStore.Ui.Controllers
         [HttpPost]
         public ActionResult Add(Book bookNew)
         {
-            if(bookNew.Id == 0)
+            if (ModelState.IsValid)
             {
-                context.Books.Add(bookNew);
-                context.SaveChanges();
-                return RedirectToAction("Index");
+                if (bookNew.Id == 0)
+                {
+                    context.Books.Add(bookNew);
+                    context.SaveChanges();
+                    return RedirectToAction("Index");
+                }
+
+                return Edit(bookNew);
             }
 
-            return Edit(bookNew);
+            //PASSANDO A CATEGORIA DE ORIGEM
+            var origens = context.Origems.ToList();
+            ViewBag.Origens = origens;
+
+            return View(bookNew); 
         }
 
         protected ActionResult Edit(Book bookOld)
