@@ -1,0 +1,47 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- Bootstrap  -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+    <!-- Toastr -->
+    <link href="~/Content/toastr.min.css" rel="stylesheet" />
+    <meta charset="utf-8" />
+    <style>
+      .nav-link:hover{
+        border-bottom: 2px solid 
+     
+      }
+    </style>
+    <title>Book Store | @ViewBag.Title </title>
+</head>
+<body class="text-center">
+    <div class="cover-container d-flex w-100 p-3 mx-auto flex-column">
+        <header class="masthead mb-auto">
+            <div class="inner">
+                <h3 class="masthead-brand">Book Store</h3>
+                <nav class="nav nav-masthead justify-content-center">
+                    <a class="nav-link active" href="@Url.Action("Index","Home")">Home</a>
+                    <a class="nav-link" href="@Url.Action("Index","Books")">Books</a>
+                    <a class="nav-link" href="@Url.Action("About","Home")">About</a>
+                </nav>
+            </div>
+        </header>
+    </div>
+
+    <div class="container">
+        @RenderBody()
+    </div>
+    <hr />
+    <footer>
+        <span>BookStore &copy; @DateTime.Now.Year </span>
+        <hr />
+    </footer>
+
+    <script src="~/Scripts/jquery-3.0.0.min.js"></script>
+    <script src="~/Scripts/bootstrap.bundle.min.js"></script>   
+    <script src="~/Scripts/toastr.min.js"></script>
+
+
+</body>
+</html>
