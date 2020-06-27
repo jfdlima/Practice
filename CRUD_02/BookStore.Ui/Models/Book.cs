@@ -10,21 +10,22 @@ namespace BookStore.Ui.Models
     [Table(nameof(Book))]
     public class Book : Entity
     {
-        [Required,Column(TypeName = "varchar"), StringLength(100)]
+        [Required(ErrorMessage = "{0} is required"),Column(TypeName = "varchar"), StringLength(100)]
         public string Titulo { get; set; }
 
-        [Required,Column(TypeName = "varchar"), StringLength(100)]
+        [Required(ErrorMessage = "Please enter a last name") ,Column(TypeName = "varchar"), StringLength(100)]
         public string SobreNome { get; set; }
 
-        [Required,Column(TypeName = "varchar"), StringLength(50)]
+        [Required(ErrorMessage = "Language is required" ),Column(TypeName = "varchar"), StringLength(50)]
         public string Idioma { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "ISBN is required")]
         public int Isbn { get; set; }
         
-        [Required]
+        [Required(ErrorMessage = "{0} is required")]
         public short Ano { get; set; }
 
+        [Required(ErrorMessage = "INFORME O PAIS MEU BOM")]
         public int OrigemId { get; set; }
         [ForeignKey(nameof(OrigemId))]
 

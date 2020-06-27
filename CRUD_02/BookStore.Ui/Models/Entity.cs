@@ -11,7 +11,7 @@ namespace BookStore.Ui.Models
     {
         public int Id { get; set; }
 
-        [Required, Column(TypeName = "varchar"),StringLength(100)]
+        [Required(ErrorMessage = "Please enter a name") , Column(TypeName = "varchar"),StringLength(100)]
         public string Nome { get; set; }
     }
 }

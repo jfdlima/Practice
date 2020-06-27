@@ -1,5 +1,8 @@
-﻿@{ 
-    if(Model.Id == 0 )
+﻿<!-- UTILIZANDO A CLASSE MODEL PARA AJUDAR -->
+@model BookStore.Ui.Models.Book
+
+@{
+    if (Model.Id == 0)
     {
         ViewBag.titulo = "Adicionar";
         ViewBag.Title = "Add";
@@ -10,7 +13,7 @@
         ViewBag.Title = "Edit";
     }
 
-   
+
 }
 
 <h3>@ViewBag.titulo book </h3>
@@ -19,45 +22,77 @@
     <form method="post">
         <div class="form-group row mx-sm-5">
             <label for="txtTitulo">Title</label>
-            <input class="form-control" type="text" name="titulo" id="txtTitulo" value="@Model.Titulo" />
+            <!-- UTILIZANDO O TEXTBOXFOR PARA UTILIZAR UMA PROPRIEDADE DATA DELE -->
+            @Html.TextBoxFor(m => m.Titulo, new { @class = "form-control", autofocus = "" })
+
+            <!-- FORNECENDO UMA MENSAGEM DE ERRO PARA O USUARIO -->
+            <small>
+                @Html.ValidationMessageFor(modelo => modelo.Titulo, "", new { @class = "text-danger" })
+            </small>
         </div>
 
         <div class="form-group row mx-sm-5">
             <label for="txtNome">Name</label>
-            <input class="form-control" type="text" name="nome" id="txtNome" value="@Model.Nome" />
+            @Html.TextBoxFor(m => m.Nome, new { @class = "form-control" })
+
+            <small>
+                @Html.ValidationMessageFor(modelo => modelo.Nome, "", new { @class = "text-danger" })
+            </small>
         </div>
 
         <div class="form-group row mx-sm-5">
             <label for="txtSobreNome">Last name</label>
-            <input class="form-control" type="text" name="sobreNome" id="txtSobreNome" value="@Model.SobreNome" />
+            @Html.TextBoxFor(m => m.SobreNome, new { @class = "form-control" })
+
+            <small>
+                @Html.ValidationMessageFor(modelo => modelo.SobreNome, "", new { @class = "text-danger" })
+            </small>
         </div>
 
 
         <div class="form-group row mx-sm-5">
             <label for="txtIdioma">Language</label>
-            <input class="form-control" type="text" name="idioma" id="txtIdioma" value="@Model.Idioma" />
+            @Html.TextBoxFor(m => m.Idioma, new { @class = "form-control" })
+
+            <small>
+                @Html.ValidationMessageFor(modelo => modelo.Idioma, ""  , new { @class = "text-danger" })
+            </small>
         </div>
 
         <!-- FAZENDO UM SELECT PARA MOSTRAR OS PAISES -->
         <div class="form-group row mx-sm-5">
             <label for="txtOrigem">Made</label>
-                <select name="OrigemId" class="form-control">
+            @Html.DropDownListFor(modelo => modelo.OrigemId, new SelectList(ViewBag.Origens, "Id", "Nome"), "Select", new { @class = "form-control" })
+            <small>
+                @Html.ValidationMessageFor(m => m.OrigemId, "", new { @class = "text-danger" })
+            </small>
+
+            <!-- FOI UTILIZADO OUTRA MANEIRA DE FAZER O SELECT COM O HTML HELPER -->
+            @*<select name="OrigemId" class="form-control">
                     <option value="">Select</option>
                     @foreach (BookStore.Ui.Models.Origem origem in ViewBag.Origens)
                     {
                         <option  @(origem.Id == Model.OrigemId ?  "selected" : "") value="@origem.Id" > @origem.Nome </option>
                     }
-                </select>
+                </select>*@
         </div>
 
         <div class="form-group row mx-sm-5">
             <label for="txtIsbn">ISBN</label>
-            <input class="form-control" type="number" name="isbn" id="txtIsbn" value="@Model.Isbn" />
+            @Html.TextBoxFor(m => m.Isbn, new { @class = "form-control" })
+
+            <small>
+                @Html.ValidationMessageFor(modelo => modelo.Isbn, "", new { @class = "text-danger" })
+            </small>
         </div>
 
         <div class="form-group row mx-sm-5">
             <label for="txtAno">Year</label>
-            <input class="form-control" type="number" name="ano" id="txtAno" value="@Model.Ano" />
+            @Html.TextBoxFor(m => m.Ano, new { @class = "form-control" })
+
+            <small>
+                @Html.ValidationMessageFor(modelo => modelo.Ano, "", new { @class = "text-danger" })
+            </small>
         </div>
 
         <br />
@@ -67,4 +102,10 @@
         </div>
     </form>
 </div>
+
+@section Scripts{
+    <script src="~/Scripts/jquery.validate.min.js"></script>
+    <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+    <script src="~/Scripts/validator.js"></script>
+}
 
